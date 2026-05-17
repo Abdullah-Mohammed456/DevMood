@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStats } from '../context/StatsContext';
 import { useMood } from '../context/MoodContext';
-import { cn } from '../lib/utils';
 import {
   ResponsiveContainer,
   ComposedChart,

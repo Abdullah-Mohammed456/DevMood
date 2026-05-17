@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { isSameDay, isYesterday, subDays, format } from 'date-fns';
+import { isSameDay, isYesterday, subDays } from 'date-fns';
 
 export interface DailyStat {
   date: string;
