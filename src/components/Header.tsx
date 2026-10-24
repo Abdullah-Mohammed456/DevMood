@@ -1,57 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { Terminal } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { useMood } from '../context/MoodContext';
 import { MOODS, type MoodType } from '../constants/moods';
-import { cn } from '../lib/utils';
-import { motion } from 'framer-motion';
 
-export const Header: React.FC = () => {
-  const [time, setTime] = useState(new Date());
-  const { mood, setMood, moodConfig } = useMood();
+export const Header = () => {
+  const [time, setTime] = useState(() => new Date());
+  const { mood, setMood } = useMood();
 
   useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
+    const timerId = window.setInterval(() => setTime(new Date()), 60_000);
+    return () => window.clearInterval(timerId);
   }, []);
 
   return (
-    <header className="w-full mb-8 pt-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div className="flex items-center gap-3">
-          <div className={cn("p-2 rounded-xl transition-colors duration-500", moodConfig.bgColor, moodConfig.textColor)}>
-            <Terminal size={28} />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight text-white">DevMood</h1>
-            <p className="text-sm text-gray-400 font-medium">
-              {format(time, 'EEEE, MMMM do')} • {format(time, 'h:mm:ss a')}
-            </p>
-          </div>
+    <header className="dm-header">
+      <div className="dm-brand">
+        <span className="dm-brand-mark" aria-hidden="true">
+          DM
+        </span>
+        <div className="dm-brand-copy">
+          <p className="dm-wordmark">DevMood</p>
+          <time className="dm-date-time" dateTime={time.toISOString()}>
+            <span>{format(time, 'EEEE, MMMM do')}</span>
+            <span>{format(time, 'h:mm a')}</span>
+          </time>
         </div>
+      </div>
 
-        <div className="flex flex-wrap gap-2 p-1.5 bg-gray-900/50 rounded-2xl backdrop-blur-sm border border-gray-800">
-          {(Object.keys(MOODS) as MoodType[]).map((m) => {
-            const config = MOODS[m];
-            const isActive = mood === m;
+      <div className="dm-mood-area">
+          <span className="dm-mood-label">Current mood</span>
+        <div className="dm-mood-switcher" role="group" aria-label="Choose your current mood">
+          {(Object.keys(MOODS) as MoodType[]).map((moodOption) => {
+            const config = MOODS[moodOption];
+            const isActive = mood === moodOption;
+
             return (
               <button
-                key={m}
-                onClick={() => setMood(m)}
-                className={cn(
-                  "relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300",
-                  isActive ? "text-white" : "text-gray-400 hover:text-gray-200 hover:bg-gray-800"
-                )}
+                key={moodOption}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setMood(moodOption)}
+                className="dm-mood-option"
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeMood"
-                    className="absolute inset-0 rounded-xl"
-                    style={{ backgroundColor: config.color, opacity: 0.2 }}
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-                <span className="relative z-10">{config.label}</span>
+                {config.label}
               </button>
             );
           })}

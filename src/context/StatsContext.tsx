@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { isSameDay, isYesterday, subDays, format } from 'date-fns';
+import { isSameDay, isYesterday } from 'date-fns';
 
 export interface DailyStat {
   date: string;
@@ -22,22 +22,6 @@ interface StatsContextProps {
   removeTaskCompleted: () => void;
 }
 
-// Generate 7 days of mock data
-const generateMockHistory = (): DailyStat[] => {
-  const history: DailyStat[] = [];
-  const today = new Date();
-  
-  for (let i = 7; i > 0; i--) {
-    const pastDate = subDays(today, i);
-    history.push({
-      date: pastDate.toISOString(),
-      pomodoros: Math.floor(Math.random() * 8) + 2, // 2 to 9 pomodoros
-      tasks: Math.floor(Math.random() * 6) + 1, // 1 to 6 tasks
-    });
-  }
-  return history;
-};
-
 const defaultStats: Stats = {
   pomodorosToday: 0,
   tasksCompletedToday: 0,
@@ -46,53 +30,79 @@ const defaultStats: Stats = {
   history: [],
 };
 
+const isNonNegativeInteger = (value: unknown): value is number =>
+  typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
+
+const isDailyStat = (value: unknown): value is DailyStat => {
+  if (typeof value !== 'object' || value === null) return false;
+  if (!('date' in value) || typeof value.date !== 'string') return false;
+  if (!Number.isFinite(Date.parse(value.date))) return false;
+  return (
+    'pomodoros' in value &&
+    isNonNegativeInteger(value.pomodoros) &&
+    'tasks' in value &&
+    isNonNegativeInteger(value.tasks)
+  );
+};
+
+const isStats = (value: unknown): value is Stats => {
+  if (typeof value !== 'object' || value === null) return false;
+  if (!('pomodorosToday' in value) || !isNonNegativeInteger(value.pomodorosToday)) return false;
+  if (!('tasksCompletedToday' in value) || !isNonNegativeInteger(value.tasksCompletedToday)) {
+    return false;
+  }
+  if (!('currentStreak' in value) || !isNonNegativeInteger(value.currentStreak)) return false;
+  if (!('lastActiveDate' in value)) return false;
+  if (
+    value.lastActiveDate !== null &&
+    (typeof value.lastActiveDate !== 'string' || !Number.isFinite(Date.parse(value.lastActiveDate)))
+  ) {
+    return false;
+  }
+  return 'history' in value && Array.isArray(value.history) && value.history.every(isDailyStat);
+};
+
+const initialStats = (): Stats => ({ ...defaultStats, history: [] });
+
+const readSavedStats = (): Stats => {
+  try {
+    const saved = localStorage.getItem('devmood-stats');
+    if (!saved) return initialStats();
+
+    const parsed: unknown = JSON.parse(saved);
+    if (!isStats(parsed)) return initialStats();
+
+    const stats: Stats = { ...parsed };
+
+    if (stats.lastActiveDate) {
+      const lastDate = new Date(stats.lastActiveDate);
+      const today = new Date();
+
+      if (!isSameDay(lastDate, today)) {
+        stats.history.push({
+          date: lastDate.toISOString(),
+          pomodoros: stats.pomodorosToday,
+          tasks: stats.tasksCompletedToday,
+        });
+
+        stats.history = stats.history.slice(-30);
+        stats.pomodorosToday = 0;
+        stats.tasksCompletedToday = 0;
+
+        if (!isYesterday(lastDate)) stats.currentStreak = 0;
+      }
+    }
+
+    return stats;
+  } catch {
+    return initialStats();
+  }
+};
+
 const StatsContext = createContext<StatsContextProps | undefined>(undefined);
 
 export const StatsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [stats, setStats] = useState<Stats>(() => {
-    const saved = localStorage.getItem('devmood-stats');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved) as Stats;
-        // Ensure history exists
-        if (!parsed.history || parsed.history.length === 0) {
-          parsed.history = generateMockHistory();
-        }
-
-        if (parsed.lastActiveDate) {
-          const lastDate = new Date(parsed.lastActiveDate);
-          const today = new Date();
-          
-          if (!isSameDay(lastDate, today)) {
-            // Save yesterday's stats to history before resetting
-            parsed.history.push({
-              date: lastDate.toISOString(),
-              pomodoros: parsed.pomodorosToday || 0,
-              tasks: parsed.tasksCompletedToday || 0,
-            });
-            
-            // Keep history to last 30 days
-            if (parsed.history.length > 30) {
-              parsed.history = parsed.history.slice(parsed.history.length - 30);
-            }
-
-            // Reset daily stats
-            parsed.pomodorosToday = 0;
-            parsed.tasksCompletedToday = 0;
-            
-            // Check streak
-            if (!isYesterday(lastDate)) {
-              parsed.currentStreak = 0;
-            }
-          }
-        }
-        return parsed;
-      } catch (e) {
-        return { ...defaultStats, history: generateMockHistory() };
-      }
-    }
-    return { ...defaultStats, history: generateMockHistory() };
-  });
+  const [stats, setStats] = useState<Stats>(readSavedStats);
 
   // Update streak on mount if first time today
   useEffect(() => {
@@ -123,7 +133,11 @@ export const StatsProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('devmood-stats', JSON.stringify(stats));
+    try {
+      localStorage.setItem('devmood-stats', JSON.stringify(stats));
+    } catch {
+      // Statistics remain available in memory when storage is unavailable.
+    }
   }, [stats]);
 
   const addPomodoro = () => {

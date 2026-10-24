@@ -9,19 +9,28 @@ interface MoodContextProps {
 
 const MoodContext = createContext<MoodContextProps | undefined>(undefined);
 
+const isMoodType = (value: string | null): value is MoodType =>
+  value !== null && Object.prototype.hasOwnProperty.call(MOODS, value);
+
+const readSavedMood = (): MoodType => {
+  try {
+    const savedMood = localStorage.getItem('devmood-current-mood');
+    return isMoodType(savedMood) ? savedMood : 'Neutral';
+  } catch {
+    return 'Neutral';
+  }
+};
+
 export const MoodProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [mood, setMoodState] = useState<MoodType>(() => {
-    const saved = localStorage.getItem('devmood-current-mood');
-    return (saved as MoodType) || 'Neutral';
-  });
+  const [mood, setMoodState] = useState<MoodType>(readSavedMood);
 
   useEffect(() => {
-    localStorage.setItem('devmood-current-mood', mood);
-    
-    // Update body background and color based on mood
-    const config = MOODS[mood];
-    document.documentElement.style.setProperty('--color-primary', config.color);
-    document.documentElement.style.setProperty('--bg-primary', config.bgColor);
+    try {
+      localStorage.setItem('devmood-current-mood', mood);
+    } catch {
+      // Mood still works for this session when storage is unavailable.
+    }
+    document.documentElement.style.setProperty('--mood-color', MOODS[mood].color);
   }, [mood]);
 
   const setMood = (newMood: MoodType) => {
