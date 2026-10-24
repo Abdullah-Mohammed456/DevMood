@@ -4,9 +4,6 @@ export interface MoodConfig {
   id: MoodType;
   label: string;
   color: string;
-  textColor: string;
-  bgColor: string;
-  accentColor: string;
   quotes: string[];
 }
 
@@ -14,10 +11,7 @@ export const MOODS: Record<MoodType, MoodConfig> = {
   Stressed: {
     id: 'Stressed',
     label: 'Stressed',
-    color: '#ff4d4d',
-    textColor: 'text-red-400',
-    bgColor: 'bg-red-950',
-    accentColor: 'border-red-500/50',
+    color: '#e9856f',
     quotes: [
       "Take a deep breath. You've solved harder bugs before.",
       "Step away for 5 minutes. The bug will be here when you get back.",
@@ -28,10 +22,7 @@ export const MOODS: Record<MoodType, MoodConfig> = {
   Tired: {
     id: 'Tired',
     label: 'Tired',
-    color: '#9b59b6',
-    textColor: 'text-purple-400',
-    bgColor: 'bg-purple-950',
-    accentColor: 'border-purple-500/50',
+    color: '#bc9bd1',
     quotes: [
       "Rest is productive. Don't push yourself to burnout.",
       "A tired mind writes tired code. Take a nap or a walk.",
@@ -42,10 +33,7 @@ export const MOODS: Record<MoodType, MoodConfig> = {
   Neutral: {
     id: 'Neutral',
     label: 'Neutral',
-    color: '#3498db',
-    textColor: 'text-blue-400',
-    bgColor: 'bg-blue-950',
-    accentColor: 'border-blue-500/50',
+    color: '#80b5c2',
     quotes: [
       "Steady progress is still progress.",
       "Keep moving forward, one line of code at a time.",
@@ -56,10 +44,7 @@ export const MOODS: Record<MoodType, MoodConfig> = {
   Focused: {
     id: 'Focused',
     label: 'Focused',
-    color: '#2ecc71',
-    textColor: 'text-green-400',
-    bgColor: 'bg-green-950',
-    accentColor: 'border-green-500/50',
+    color: '#c5e77b',
     quotes: [
       "You are in the zone. Let the code flow!",
       "Unstoppable. Keep that momentum going.",

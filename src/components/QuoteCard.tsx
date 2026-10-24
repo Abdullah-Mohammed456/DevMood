@@ -1,44 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Quote } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useMood } from '../context/MoodContext';
-import { cn } from '../lib/utils';
 
-export const QuoteCard: React.FC = () => {
-  const { moodConfig } = useMood();
-  const [quote, setQuote] = useState('');
+const chooseQuote = (quotes: string[]) => quotes[Math.floor(Math.random() * quotes.length)];
+
+export const QuoteCard = () => {
+  const { mood, moodConfig } = useMood();
+  const [quote, setQuote] = useState(() => chooseQuote(moodConfig.quotes));
 
   useEffect(() => {
-    // Pick a random quote when mood changes
-    const quotes = moodConfig.quotes;
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    setQuote(randomQuote);
+    setQuote(chooseQuote(moodConfig.quotes));
   }, [moodConfig]);
 
   return (
-    <div className={cn(
-      "relative overflow-hidden rounded-2xl p-6 border transition-all duration-500",
-      moodConfig.bgColor,
-      moodConfig.accentColor
-    )}>
-      <div className={cn("absolute top-4 right-4 opacity-20", moodConfig.textColor)}>
-        <Quote size={48} />
+    <section className="dm-quote-card" aria-labelledby="daily-focus-title">
+      <div className="dm-quote-copy">
+        <p className="dm-eyebrow dm-quote-kicker">DEVMOOD / MOOD: {mood.toUpperCase()}</p>
+        <h1 className="dm-hero-title" id="daily-focus-title">One task.<br />One session.</h1>
       </div>
-      
-      <div className="relative z-10 min-h-[80px] flex items-center justify-center">
+      <div className="dm-quote-side">
+        <p className="dm-quote-label">A line for this mood</p>
         <AnimatePresence mode="wait">
-          <motion.p
+          <motion.blockquote
             key={quote}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className={cn("text-2xl md:text-3xl font-outfit font-bold text-center max-w-3xl", moodConfig.textColor)}
+            className="dm-quote-text"
+            aria-live="polite"
           >
-            "{quote}"
-          </motion.p>
+            {quote}
+          </motion.blockquote>
         </AnimatePresence>
       </div>
-    </div>
+    </section>
   );
 };

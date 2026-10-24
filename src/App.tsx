@@ -1,4 +1,6 @@
-import { MoodProvider } from './context/MoodContext';
+import type { CSSProperties } from 'react';
+import { MotionConfig } from 'framer-motion';
+import { MoodProvider, useMood } from './context/MoodContext';
 import { StatsProvider } from './context/StatsContext';
 import { Header } from './components/Header';
 import { QuoteCard } from './components/QuoteCard';
@@ -8,28 +10,33 @@ import { StatsBar } from './components/StatsBar';
 import { DataAnalysis } from './components/DataAnalysis';
 
 function AppContent() {
-  return (
-    <div className="min-h-screen max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 font-sans">
-      <Header />
-      
-      <main className="space-y-8 mt-6">
-        <QuoteCard />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-4">
-            <PomodoroTimer />
-          </div>
-          
-          <div className="lg:col-span-8">
-            <TaskList />
-          </div>
-        </div>
+  const { moodConfig } = useMood();
 
-        <StatsBar />
-        
-        <DataAnalysis />
-      </main>
-    </div>
+  return (
+    <MotionConfig reducedMotion="user">
+      <div
+        className="dm-app"
+        style={{ '--mood-color': moodConfig.color } as CSSProperties & { '--mood-color': string }}
+      >
+        <Header />
+        <main className="dm-main">
+          <QuoteCard />
+
+          <section className="dm-workspace-grid" aria-label="Focus timer and tasks">
+            <PomodoroTimer />
+            <TaskList />
+          </section>
+
+          <section className="dm-stats-grid" aria-label="Today's statistics">
+            <StatsBar />
+          </section>
+
+          <section className="dm-analysis-grid" aria-label="Weekly activity and mood distribution">
+            <DataAnalysis />
+          </section>
+        </main>
+      </div>
+    </MotionConfig>
   );
 }
 

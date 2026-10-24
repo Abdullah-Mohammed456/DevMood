@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>Signal Garden — DevMood preview</title>
+    <link rel="stylesheet" href="preview.css" />
+  </head>
+  <body class="preview-arcade">
+    <div class="preview-banner arcade-banner">
+      <a href="index.html">All directions</a>
+      <span>03 / SIGNAL GARDEN</span>
+      <span>Concept preview · not the live app</span>
+    </div>
+    <main class="arcade-shell">
+      <header class="arcade-header">
+        <a class="arcade-brand" href="index.html"><span class="brand-stamp">D</span> DEVMOOD</a>
+        <nav class="arcade-nav" aria-label="Preview navigation"><a class="arcade-nav-current" href="#today" aria-current="page">TODAY</a><a href="#tasks">TASKS</a><a href="#activity">ACTIVITY</a></nav>
+        <div class="level-chip"><span>MOOD MODE</span><b>FOCUSED</b></div>
+      </header>
+
+      <section class="arcade-intro" id="today">
+        <div><p class="arcade-overline">SATURDAY <span>·</span> 24 OCTOBER 2026</p><h1>Make room<br /><em>for focus.</em></h1><p class="arcade-subline">“Unstoppable. Keep that momentum going.”<br /><span>YOUR FOCUSED MODE QUOTE</span></p></div>
+        <div class="signal-art" role="img" aria-label="Abstract signal for the selected focused mood">
+          <span class="signal-orbit orbit-one"></span><span class="signal-orbit orbit-two"></span>
+          <span class="signal-core">FOCUSED</span><span class="signal-caption">MOOD<br />MODE</span>
+        </div>
+      </section>
+
+      <section class="arcade-mood" aria-labelledby="arcade-mood-title">
+        <div class="arcade-section-head"><span class="arcade-index">01</span><h2 id="arcade-mood-title">Choose your mood</h2><span class="arcade-hint">SETS THE ACCENT + DAILY QUOTE</span></div>
+        <div class="arcade-mood-row" aria-label="Mood choices preview">
+          <button type="button" class="arcade-mood-choice" aria-pressed="false"><span class="signal-symbol symbol-stress">!</span><span>STRESSED</span></button>
+          <button type="button" class="arcade-mood-choice" aria-pressed="false"><span class="signal-symbol symbol-tired">~</span><span>TIRED</span></button>
+          <button type="button" class="arcade-mood-choice" aria-pressed="false"><span class="signal-symbol symbol-neutral">=</span><span>NEUTRAL</span></button>
+          <button type="button" class="arcade-mood-choice arcade-mood-active" aria-pressed="true"><span class="signal-symbol symbol-focus">+</span><span>FOCUSED</span></button>
+        </div>
+      </section>
+
+      <div class="arcade-board">
+        <section class="mission-board" id="tasks" aria-labelledby="tasks-title">
+          <div class="arcade-section-head"><span class="arcade-index">02</span><h2 id="tasks-title">Your task list</h2><span class="mission-progress">1 / 3 DONE</span></div>
+          <ul class="mission-list">
+            <li class="mission-complete"><span class="mission-check" aria-hidden="true">✓</span><span><strong>Review API validation flow</strong><small>COMPLETED</small></span></li>
+            <li><span class="mission-check" aria-hidden="true"></span><span><strong>Finish the mood summary view</strong><small>UP NEXT</small></span></li>
+            <li><span class="mission-check" aria-hidden="true"></span><span><strong>Send the project update</strong><small>ON YOUR LIST</small></span></li>
+          </ul>
+          <div class="mission-meter"><span><i></i></span><small>1 OF 3 TASKS COMPLETE</small></div>
+        </section>
+        <aside class="arcade-side">
+          <section class="arcade-timer" aria-labelledby="arcade-timer-title">
+            <div class="timer-sticker">POMODORO</div>
+            <p class="arcade-overline">READY WHEN YOU ARE</p>
+            <h2 id="arcade-timer-title">25<span>:</span>00</h2>
+            <button type="button">START FOCUS</button>
+          </section>
+          <section class="streak-panel" aria-label="Today's progress">
+            <div><p class="arcade-overline">TODAY’S STATS</p><h2>3 <small>sessions</small></h2><p>5 tasks completed · 4-day streak</p></div>
+          </section>
+        </aside>
+      </div>
+
+      <section class="arcade-activity" id="activity" aria-labelledby="arcade-activity-title">
+        <div class="arcade-section-head"><span class="arcade-index">03</span><h2 id="arcade-activity-title">A week of showing up</h2><span class="arcade-hint">ACTIVITY + MOOD MIX</span></div>
+        <div class="arcade-activity-grid">
+          <div class="arcade-week-bars" aria-label="Weekly activity preview"><div><i style="--bar:35%"></i><small>MON</small></div><div><i style="--bar:55%"></i><small>TUE</small></div><div><i style="--bar:42%"></i><small>WED</small></div><div><i style="--bar:72%"></i><small>THU</small></div><div><i style="--bar:50%"></i><small>FRI</small></div><div class="arcade-today"><i style="--bar:30%"></i><small>SAT</small></div><div><i style="--bar:12%"></i><small>SUN</small></div></div>
+          <div class="arcade-mood-mix" aria-label="Illustrative mood distribution"><p>MOOD DISTRIBUTION <small>DEMO DATA</small></p><div class="arcade-mix-bar"><i></i><i></i><i></i><i></i></div><div><span>FOCUSED 45%</span><span>NEUTRAL 30%</span><span>TIRED 15%</span><span>STRESSED 10%</span></div></div>
+        </div>
+      </section>
+
+      <footer class="arcade-footer"><span>DEVMOOD</span><span>Progress, with room to breathe.</span><a href="index.html">CHANGE DIRECTION</a></footer>
+    </main>
+    <p class="sample-footer arcade-reference">Reference lock: <a href="https://habitica.com/static/features">Habitica’s task progress cues</a>, simplified to actual task completion without game rewards; <a href="https://daylio.net/">Daylio’s customizable mood options and visual summaries</a>. The signal orb is a CSS placeholder for an optional lightweight visual.</p>
+  </body>
+</html>
