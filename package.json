@@ -18,7 +18,7 @@
   "dependencies": {
     "date-fns": "^4.1.0",
     "framer-motion": "^12.38.0",
-    "lucide-react": "^1.16.0",
+    "lucide-react": "^1.61.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "recharts": "^3.8.1"
