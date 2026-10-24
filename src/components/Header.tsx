@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react';
-import { format } from 'date-fns';
-import { useMood } from '../context/MoodContext';
-import { MOODS, type MoodType } from '../constants/moods';
+import { useEffect, useState } from 'react'
+import { format } from 'date-fns'
+import { useMood } from '../context/MoodContext'
+import { MOODS, type MoodType } from '../constants/moods'
 
 export const Header = () => {
-  const [time, setTime] = useState(() => new Date());
-  const { mood, setMood } = useMood();
+  const [time, setTime] = useState(() => new Date())
+  const { mood, setMood } = useMood()
 
   useEffect(() => {
-    const timerId = window.setInterval(() => setTime(new Date()), 60_000);
-    return () => window.clearInterval(timerId);
-  }, []);
+    const timerId = window.setInterval(() => setTime(new Date()), 60_000)
+    return () => window.clearInterval(timerId)
+  }, [])
 
   return (
     <header className="dm-header">
       <div className="dm-brand">
-        <span className="dm-brand-mark" aria-hidden="true">
-          DM
-        </span>
         <div className="dm-brand-copy">
           <p className="dm-wordmark">DevMood</p>
           <time className="dm-date-time" dateTime={time.toISOString()}>
@@ -28,11 +25,11 @@ export const Header = () => {
       </div>
 
       <div className="dm-mood-area">
-          <span className="dm-mood-label">Current mood</span>
+        <span className="dm-mood-label">Current mood</span>
         <div className="dm-mood-switcher" role="group" aria-label="Choose your current mood">
           {(Object.keys(MOODS) as MoodType[]).map((moodOption) => {
-            const config = MOODS[moodOption];
-            const isActive = mood === moodOption;
+            const config = MOODS[moodOption]
+            const isActive = mood === moodOption
 
             return (
               <button
@@ -44,10 +41,10 @@ export const Header = () => {
               >
                 {config.label}
               </button>
-            );
+            )
           })}
         </div>
       </div>
     </header>
-  );
-};
+  )
+}

@@ -37,52 +37,94 @@
 
         <section class="console-intro">
           <div>
-          <p class="console-kicker">DEVMOOD / CURRENT MOOD</p>
-          <h1>One task.<br /><span>One session.</span></h1>
+            <p class="console-kicker">DEVMOOD / CURRENT MOOD</p>
+            <h1>One task One Session</h1>
           </div>
-          <blockquote class="console-quote">“You are in the zone. Let the code flow!”<cite>— FOCUSED MODE</cite></blockquote>
+          <blockquote class="console-quote">
+            “You are in the zone. Let the code flow!”<cite>— FOCUSED MODE</cite>
+          </blockquote>
         </section>
 
         <div class="console-grid">
           <section class="console-panel mood-panel" id="mood" aria-labelledby="mood-title">
             <div class="panel-heading">
-              <div><p class="panel-index">01 — MOOD MODE</p><h2 id="mood-title">How are you feeling?</h2></div>
+              <div>
+                <p class="panel-index">01 — MOOD MODE</p>
+                <h2 id="mood-title">How are you feeling?</h2>
+              </div>
               <span class="live-label">SETS YOUR THEME</span>
             </div>
             <p class="panel-hint">Choose a mood to update your color and daily quote.</p>
             <div class="console-moods" aria-label="Mood choices preview">
-              <button type="button" aria-pressed="false"><span class="mood-mark stressed">!</span><span>Stressed</span></button>
-              <button type="button" aria-pressed="false"><span class="mood-mark tired">~</span><span>Tired</span></button>
-              <button type="button" aria-pressed="false"><span class="mood-mark neutral">·</span><span>Neutral</span></button>
-              <button type="button" class="mood-selected" aria-pressed="true"><span class="mood-mark focused">+</span><span>Focused</span></button>
+              <button type="button" aria-pressed="false">
+                <span class="mood-mark stressed">!</span><span>Stressed</span>
+              </button>
+              <button type="button" aria-pressed="false">
+                <span class="mood-mark tired">~</span><span>Tired</span>
+              </button>
+              <button type="button" aria-pressed="false">
+                <span class="mood-mark neutral">·</span><span>Neutral</span>
+              </button>
+              <button type="button" class="mood-selected" aria-pressed="true">
+                <span class="mood-mark focused">+</span><span>Focused</span>
+              </button>
             </div>
-            <div class="mood-readout"><span class="status-dot"></span> Active mood <strong>Focused</strong><span>theme updated</span></div>
+            <div class="mood-readout">
+              <span class="status-dot"></span> Active mood <strong>Focused</strong
+              ><span>theme updated</span>
+            </div>
           </section>
 
           <section class="console-panel timer-panel" id="focus" aria-labelledby="timer-title">
             <div class="panel-heading">
-              <div><p class="panel-index">02 — POMODORO</p><h2 id="timer-title">Focus session</h2></div>
+              <div>
+                <p class="panel-index">02 — POMODORO</p>
+                <h2 id="timer-title">Focus session</h2>
+              </div>
               <span class="timer-cycle">WORK · 25 MIN</span>
             </div>
-            <div class="timer-face" aria-label="Timer preview: 25 minutes"><span>25</span><b>:</b><span>00</span></div>
-            <div class="timer-footer"><span>ONE SESSION AT A TIME</span><button type="button">Start focus</button></div>
+            <div class="timer-face" aria-label="Timer preview: 25 minutes">
+              <span>25</span><b>:</b><span>00</span>
+            </div>
+            <div class="timer-footer">
+              <span>ONE SESSION AT A TIME</span><button type="button">Start focus</button>
+            </div>
           </section>
 
           <section class="console-panel tasks-panel" id="tasks" aria-labelledby="tasks-title">
             <div class="panel-heading">
-              <div><p class="panel-index">03 — TASK LIST</p><h2 id="tasks-title">Next in line</h2></div>
+              <div>
+                <p class="panel-index">03 — TASK LIST</p>
+                <h2 id="tasks-title">Next in line</h2>
+              </div>
               <span class="quiet-link">1 / 3 DONE</span>
             </div>
             <ul class="console-task-list">
-              <li><span class="task-check task-done" aria-hidden="true">✓</span><span class="task-name task-finished">Review API validation flow</span></li>
-              <li><span class="task-check" aria-hidden="true"></span><span class="task-name">Finish the mood summary view</span></li>
-              <li><span class="task-check" aria-hidden="true"></span><span class="task-name">Send the project update</span></li>
+              <li>
+                <span class="task-check task-done" aria-hidden="true">✓</span
+                ><span class="task-name task-finished">Review API validation flow</span>
+              </li>
+              <li>
+                <span class="task-check" aria-hidden="true"></span
+                ><span class="task-name">Finish the mood summary view</span>
+              </li>
+              <li>
+                <span class="task-check" aria-hidden="true"></span
+                ><span class="task-name">Send the project update</span>
+              </li>
             </ul>
           </section>
 
-          <section class="console-panel activity-panel" id="activity" aria-labelledby="activity-title">
+          <section
+            class="console-panel activity-panel"
+            id="activity"
+            aria-labelledby="activity-title"
+          >
             <div class="panel-heading">
-              <div><p class="panel-index">04 — LAST SEVEN DAYS</p><h2 id="activity-title">Weekly activity</h2></div>
+              <div>
+                <p class="panel-index">04 — LAST SEVEN DAYS</p>
+                <h2 id="activity-title">Weekly activity</h2>
+              </div>
               <span class="activity-total">12 <small>sessions</small></span>
             </div>
             <div class="week-bars" aria-label="Weekly activity preview">
@@ -94,21 +136,48 @@
               <div class="bar-today"><span style="--bar: 64%"></span><small>SAT</small></div>
               <div><span style="--bar: 12%"></span><small>SUN</small></div>
             </div>
-            <div class="activity-foot"><span>POMODOROS</span><strong>5</strong><span class="activity-divider"></span><span>TASKS DONE</span><strong>18</strong><span class="activity-divider"></span><span>STREAK</span><strong>4 days</strong></div>
+            <div class="activity-foot">
+              <span>POMODOROS</span><strong>5</strong><span class="activity-divider"></span
+              ><span>TASKS DONE</span><strong>18</strong><span class="activity-divider"></span
+              ><span>STREAK</span><strong>4 days</strong>
+            </div>
           </section>
         </div>
 
         <section class="console-mood-distribution" aria-labelledby="distribution-title">
-          <div class="distribution-heading"><div><p class="panel-index">MOOD OVERVIEW</p><h2 id="distribution-title">Mood distribution</h2></div><span>ILLUSTRATIVE DATA</span></div>
+          <div class="distribution-heading">
+            <div>
+              <p class="panel-index">MOOD OVERVIEW</p>
+              <h2 id="distribution-title">Mood distribution</h2>
+            </div>
+            <span>ILLUSTRATIVE DATA</span>
+          </div>
           <div class="distribution-bars">
-            <div><span>Focused</span><i><b style="--value:45%;--mood-color:#b8db61"></b></i><strong>45%</strong></div>
-            <div><span>Neutral</span><i><b style="--value:30%;--mood-color:#83b9c5"></b></i><strong>30%</strong></div>
-            <div><span>Tired</span><i><b style="--value:15%;--mood-color:#b89bc9"></b></i><strong>15%</strong></div>
-            <div><span>Stressed</span><i><b style="--value:10%;--mood-color:#e77c68"></b></i><strong>10%</strong></div>
+            <div>
+              <span>Focused</span><i><b style="--value: 45%; --mood-color: #b8db61"></b></i
+              ><strong>45%</strong>
+            </div>
+            <div>
+              <span>Neutral</span><i><b style="--value: 30%; --mood-color: #83b9c5"></b></i
+              ><strong>30%</strong>
+            </div>
+            <div>
+              <span>Tired</span><i><b style="--value: 15%; --mood-color: #b89bc9"></b></i
+              ><strong>15%</strong>
+            </div>
+            <div>
+              <span>Stressed</span><i><b style="--value: 10%; --mood-color: #e77c68"></b></i
+              ><strong>10%</strong>
+            </div>
           </div>
         </section>
       </main>
     </div>
-    <footer class="sample-footer">Reference lock: <a href="https://linear.app/now/behind-the-latest-design-refresh">Linear’s subdued navigation and clearer hierarchy</a>; <a href="https://daylio.net/">Daylio’s quick mood entry and chart summaries</a>.</footer>
+    <footer class="sample-footer">
+      Reference lock:
+      <a href="https://linear.app/now/behind-the-latest-design-refresh"
+        >Linear’s subdued navigation and clearer hierarchy</a
+      >; <a href="https://daylio.net/">Daylio’s quick mood entry and chart summaries</a>.
+    </footer>
   </body>
 </html>

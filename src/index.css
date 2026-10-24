@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   color-scheme: light;
@@ -17,8 +17,8 @@
   --line-strong: #38433d;
   --mood-color: #c5e77b;
   --focus-color: #bd3e2f;
-  --display: "Anton", Impact, sans-serif;
-  --mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
+  --display: 'Anton', Impact, sans-serif;
+  --mono: 'DM Mono', 'SFMono-Regular', Consolas, monospace;
 }
 
 * {
@@ -38,6 +38,7 @@ body {
   overflow-x: hidden;
   color: var(--ink);
   background: var(--page);
+  user-select: none;
 }
 
 button,
@@ -118,7 +119,7 @@ button:disabled {
 }
 
 .dm-date-time span + span::before {
-  content: "/";
+  content: '/';
   margin-right: 8px;
   color: var(--ink-soft);
 }
@@ -155,7 +156,9 @@ button:disabled {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: color 140ms ease, background-color 140ms ease;
+  transition:
+    color 140ms ease,
+    background-color 140ms ease;
 }
 
 .dm-mood-option:last-child {
@@ -167,7 +170,7 @@ button:disabled {
   background: #d9ddd5;
 }
 
-.dm-mood-option[aria-pressed="true"] {
+.dm-mood-option[aria-pressed='true'] {
   color: var(--ink);
   background: var(--mood-color);
 }
@@ -300,7 +303,7 @@ button:disabled {
   border-right: 0;
 }
 
-.dm-session-tabs button[aria-pressed="true"] {
+.dm-session-tabs button[aria-pressed='true'] {
   color: var(--ink);
   background: var(--mood-color);
 }
@@ -322,7 +325,9 @@ button:disabled {
   height: 100%;
   display: block;
   background: var(--mood-color);
-  transition: width 500ms linear, background-color 150ms ease;
+  transition:
+    width 500ms linear,
+    background-color 150ms ease;
 }
 
 .dm-timer-reading {
@@ -364,7 +369,10 @@ button:disabled {
   justify-content: center;
   gap: 9px;
   cursor: pointer;
-  transition: color 140ms ease, background-color 140ms ease, border-color 140ms ease;
+  transition:
+    color 140ms ease,
+    background-color 140ms ease,
+    border-color 140ms ease;
 }
 
 .dm-primary-button {
@@ -543,7 +551,7 @@ button:disabled {
   cursor: pointer;
 }
 
-.dm-task-toggle[aria-pressed="true"] {
+.dm-task-toggle[aria-pressed='true'] {
   border-color: var(--mood-color);
   background: var(--mood-color);
 }
@@ -557,7 +565,7 @@ button:disabled {
   overflow-wrap: anywhere;
 }
 
-.dm-task-text[data-completed="true"] {
+.dm-task-text[data-completed='true'] {
   color: var(--muted);
   text-decoration: line-through;
   text-decoration-thickness: 1px;
