@@ -7,11 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)](tsconfig.app.json)
 [![Deploy target: Vercel](https://img.shields.io/badge/deploy-Vercel-black?logo=vercel)](vercel.json)
 
-**Live demo:** Not deployed yet. The project is configured for Vercel; add the production URL here after the first deployment.
-
-> **Screenshot placeholder:** Add a desktop and mobile dashboard capture under `docs/assets/` after reviewing the deployed build.
->
-> **GIF placeholder:** Add a short timer and mood-switching demo under `docs/assets/` when available.
+**Demo:** Not currently deployed; use the local setup below.
 
 ## Features
 
@@ -110,7 +106,7 @@ The app has no backend, database, Render service, or Neon connection to configur
 │   ├── context/              # Mood and statistics state
 │   ├── App.tsx               # Providers and dashboard layout
 │   ├── index.css             # Visual system and responsive styles
-│   └── main.tsx              # React entry point
+│   └── main.tsx              # Entry point
 ├── .env.example
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -122,8 +118,6 @@ The app has no backend, database, Render service, or Neon connection to configur
 
 - Add unit and browser-level tests for timer, task, and storage flows.
 - Record mood history so the mood distribution chart can show real user data.
-- Add a reviewed desktop and mobile screenshot to the README.
-- Deploy the first public Vercel build and link it here.
 
 ## Contributing
 
