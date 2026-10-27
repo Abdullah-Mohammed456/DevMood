@@ -15,13 +15,9 @@ python3 -m http.server 8000 --directory design-previews
 
 Then open `http://127.0.0.1:8000/`. The `index.html` page links to each direction.
 
-## Research note
+## Scope and references
 
-Refero was unavailable (`NO_SUBSCRIPTION`). Following the user's direction, I used the
-connected web-search MCP and official product sources instead. These references inform
-specific visual and interaction patterns; I did not copy their assets or layouts. I also
-checked the repository's actual components so the concepts reflect DevMood rather than
-imaginary journal or reward features.
+These concepts explore visual treatments for DevMood’s existing dashboard. The linked products provide design context; the previews are independent explorations and do not add product behavior.
 
 ## Reference locks
 
